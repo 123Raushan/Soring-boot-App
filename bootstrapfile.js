@@ -58,45 +58,59 @@ window.addEventListener('DOMContentLoaded', function (event) {
     verifyButton.addEventListener('click', async function () {
         //send Otp
         const email = document.getElementById("signUpEmail").value;
-        const response = await fetch("http://localhost:8080/apiEmail/sendOtp", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `email=${encodeURIComponent(email)}`,
-        });
-        const result = await response.text();
-        if (result === "Email Allready Exist") {
-            alert("Email Allready Exist")
-        }
-        else {
-            document.getElementById("message").innerText = result;
-            // Show the OTP container
+        verifyButton.disabled=true;
+        document.getElementById('signUpEmail').readOnly=true
+        try{
+            const response = await fetch("http://localhost:8080/apiEmail/sendOtp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `email=${encodeURIComponent(email)}`,
+            });
+            const result = await response.text();
+            alert(result)
+            if (result === "Email Allready Exist") {
+                alert("Email Allready Exist")
+                document.getElementById('signUpEmail').readOnly=false
+                verifyButton.disabled=false;
 
-            otpContainer.style.display = 'block';
-
-            // Clear any existing OTP boxes
-            otpBoxes.innerHTML = '';
-
-            // Generate 6 OTP input boxes
-            for (let i = 0; i < 6; i++) {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.required = true;
-                input.maxLength = '1';
-                input.className = 'form-control text-center otpInputs';
-                input.style.width = '40px';
-                otpBoxes.appendChild(input);
-
-                // Auto-focus on the next input
-                input.addEventListener('input', function () {
-                    if (input.value.length === 1 && input.nextElementSibling) {
-                        input.nextElementSibling.focus();
-                    }
-                });
             }
-            // Start the 60-second timer
-            startTimer(60);
+            else {
+                document.getElementById("message").innerText = result;
+                // Show the OTP container
+    
+                otpContainer.style.display = 'block';
+    
+                // Clear any existing OTP boxes
+                otpBoxes.innerHTML = '';
+    
+                // Generate 6 OTP input boxes
+                for (let i = 0; i < 6; i++) {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.required = true;
+                    input.maxLength = '1';
+                    input.className = 'form-control text-center otpInputs';
+                    input.style.width = '40px';
+                    otpBoxes.appendChild(input);
+    
+                    // Auto-focus on the next input
+                    input.addEventListener('input', function () {
+                        if (input.value.length === 1 && input.nextElementSibling) {
+                            input.nextElementSibling.focus();
+                        }
+                    });
+                }
+                // Start the 60-second timer
+                startTimer(60);
+            }
+        }
+        catch(error){
+            //alert(error)
+            console.log(error);
+            
+            alert("Network error, try again later.");
         }
 
     });
@@ -147,7 +161,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         const signUpButton = document.getElementById('signUpButton');
         if (result === "OTP verified successfully!") {
             const email = document.getElementById("signUpEmail");
-            email.readonly =
+            email.readonly =true
                 signUpButton.disabled = false;
             clearInterval(timer);
             var timerElement = document.getElementById('timer');
