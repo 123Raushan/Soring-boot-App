@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: sans-serif;
+}
+
+.welcome-section {
+    background: white url(.//images/bg1.jpg) no-repeat scroll center;
+    height: 100vh;
+    background-size: cover;
+    color: white;
+}
+
+.welcome-heading {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.navbar{
+    background-color: lightgrey;
+    color: black;
+}
+.nav-link{
+    font-size: 20px;
+}
+.nav-item:hover{
+    background-color: teal;
+    color: white;
+    border-radius: 30px;
+}
+
+.card{
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    border-radius: 8px;
+    background: #fff;
+    height: 400px;
+}
+.card-btn{
+    border-radius: 40px;
+    box-shadow:  0 0 5px gray;
+    border: none;
+    background-color: teal;
+    width: 100px;
+   
+  }
+
+.notes-div img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.footer {
+    background: linear-gradient(to right, #0066cc, teal);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.footer a {
+    color: yellow;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+
