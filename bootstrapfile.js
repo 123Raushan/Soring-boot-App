@@ -261,9 +261,11 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 alert("Error saving the question");
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert("Network error, try again later.");
-        }
+    console.error("Catch Block Error:", error.message);
+    console.error("Stack Trace:", error.stack);
+    alert("Network error, try again later.");
+}
+
     })
     const logoutBtn=this.document.getElementById('logoutBtn');
    logoutBtn.addEventListener('click',(event)=>{
