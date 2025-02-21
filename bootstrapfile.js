@@ -148,7 +148,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         const email = document.getElementById("signUpEmail").value;
         const otp = otpValue;
 
-        const response = await fetch("http://localhost:8080/apiEmail/verifyOtp", {
+        const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/verifyOtp", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
