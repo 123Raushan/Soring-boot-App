@@ -238,7 +238,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 },
                 body: JSON.stringify(jsonUser)
             });
-
+            console.log("Response Status:", response.status);
             if (response.ok) {
                 const data = await response.text();
                 console.log("hello");
