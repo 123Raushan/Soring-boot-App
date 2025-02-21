@@ -199,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "pwrd": pwrd
             }
             try {
-                const response = await fetch(`https://quiz-server-production-71dd.up.railway.app/saveUser`, {
+                const response = await fetch("https://quiz-server-production-71dd.up.railway.app/saveUser", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -230,7 +230,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "email": signInEmail,
                 "pwrd": password
             }
-            const response = await fetch(`https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser`, {
+            const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
