@@ -222,7 +222,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     })
     const SiginInButton = this.document.getElementById('SiginInButton');
     SiginInButton.addEventListener('click', async () => {
-        event.preventDefault();
+     
           try{
             var signInEmail = this.document.getElementById('signInEmail').value;
             var password = this.document.getElementById('signInPassword').value;
