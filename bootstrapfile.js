@@ -230,6 +230,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "email": signInEmail,
                 "pwrd": password
             }
+            console.log(jsonUser);
             const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser", {
                 method: 'POST',
                 headers: {
