@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         verifyButton.disabled=true;
         document.getElementById('signUpEmail').readOnly=true
         try{
-            const response = await fetch("http://localhost:8080/apiEmail/sendOtp", {
+            const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/sendOtp", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
@@ -199,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "pwrd": pwrd
             }
             try {
-                const response = await fetch(`http://localhost:8080/apiEmail/saveUser`, {
+                const response = await fetch(`https://quiz-server-production-71dd.up.railway.app/saveUser`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -230,7 +230,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "email": signInEmail,
                 "pwrd": password
             }
-            const response = await fetch(`http://localhost:8080/apiEmail/LoginUser`, {
+            const response = await fetch(`https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
