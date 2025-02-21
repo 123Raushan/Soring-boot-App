@@ -223,7 +223,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
     const SiginInButton = this.document.getElementById('SiginInButton');
     SiginInButton.addEventListener('click', async () => {
         event.preventDefault();
-      
+          try{
             var signInEmail = this.document.getElementById('signInEmail').value;
             var password = this.document.getElementById('signInPassword').value;
             const jsonUser = {
@@ -261,8 +261,13 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 console.error('Error:', response.statusText);
                 alert("Error saving the question");
             }
+          }
+              catch (error) {
+            console.error('Error:', error);
+            alert("Network error, try again later.");
+        }
         
-
+        
     })
     const logoutBtn=this.document.getElementById('logoutBtn');
    logoutBtn.addEventListener('click',(event)=>{
