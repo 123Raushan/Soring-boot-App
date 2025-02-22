@@ -138,6 +138,12 @@ window.addEventListener('DOMContentLoaded', function () {
             
             displayQuestion();
         } else {
+             for (const key in answer) {
+               if (answer[key]=='y') {
+                correctAnswers++
+               }
+            }
+            console.log(answer);
             // Quiz Completed: Save score and redirect to results page
             localStorage.setItem('quizScore', correctAnswers); // Save the score
             localStorage.setItem('totalQuestions', totalQuestions); // Save total questions
