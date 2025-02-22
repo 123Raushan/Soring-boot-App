@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Function to fetch questions from the API
     async function fetchQuestions() {
         try {
-            const response = await fetch(`http://localhost:9090/api/${title}_question`);
+            const response = await fetch(`https://question-quiz-production.up.railway.app/api/${title}_question`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
