@@ -176,7 +176,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
             otpVerified = false
         }
     })
-    signUpButton.addEventListener('click', async function () {
+    signUpButton.addEventListener('click', async function (event) {
         event.preventDefault();
         let isValid = true;
         var signUpFName = document.getElementById('signUpFName').value.trim();
@@ -221,63 +221,50 @@ window.addEventListener('DOMContentLoaded', function (event) {
         }
     })
     const SiginInButton = this.document.getElementById('SiginInButton');
-    SiginInButton.addEventListener('click', async () => {
-    try {
-        var signInEmail = document.getElementById('signInEmail').value;
-        var password = document.getElementById('signInPassword').value;
+SiginInButton.addEventListener('click', async (event) => {
+        event.preventDefault()
+        
+            var signInEmail = this.document.getElementById('signInEmail').value;
+            var password = this.document.getElementById('signInPassword').value;
+           
+            const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `email=${encodeURIComponent(signInEmail)}&pwrd=${encodeURIComponent(password)}`,
+            });
+            console.log(response);
+            
+            
+            const data1 = await response.text();
+            console.log("Response Data:", data1);
+            alert(data1);
+            if (response.ok) {
+                
+                const data = await response.text();
+                console.log("hello");
+                const namePart = data.split("Login succesfull")[1]?.trim(); // Trim Extra Spaces
+                if (namePart && namePart.length > 0) {
+                    const firstChar = namePart.charAt(0).toUpperCase(); // First Letter Capital
+                    const av=document.getElementById('profileAvatar');
+                    av.innerHTML=firstChar;
+                    localStorage.setItem("email", signInEmail);
+                    localStorage.setItem("name", namePart);
+                    document.getElementById('signInEmail').value='';
+                    document.getElementById('signInPassword').value='';
+                    
+                } else {
+                    console.error("Name extract nahi ho paya!");
+                }
+                this.alert(data)
 
-        const jsonUser = {
-            "email": signInEmail,
-            "pwrd": password
-        };
-
-        console.log("Sending request:", jsonUser);
-
-        // ✅ Timeout handling
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
-
-        const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonUser),
-            signal: controller.signal // ✅ Signal for timeout
-        });
-
-        clearTimeout(timeoutId); // Timeout remove if response received
-        console.log("Response Status:", response.status);
-
-        if (response.ok) {
-            const data = await response.text();
-            console.log("Response Data:", data);
-
-            const namePart = data.split("Login succesfull")[1]?.trim();
-            if (namePart && namePart.length > 0) {
-                const firstChar = namePart.charAt(0).toUpperCase();
-                document.getElementById('profileAvatar').innerHTML = firstChar;
-                localStorage.setItem("email", signInEmail);
-                localStorage.setItem("name", namePart);
-                document.getElementById('signInEmail').value = '';
-                document.getElementById('signInPassword').value = '';
             } else {
-                console.error("Name extract nahi ho paya!");
+                console.error('Error:', response.statusText);
+                alert("Error saving the question");
             }
-            alert(data);
-        } else {
-            console.error('Error:', response.statusText);
-            alert("Login Failed: " + response.statusText);
-        }
-    } catch (error) {
-        console.error('Request Failed:', error);
-        if (error.name === "AbortError") {
-            alert("Request timeout, server slow hai.");
-        } else {
-            alert("Network error, try again later.");
-        }
-    }
-});
+        
+    })
 
     const logoutBtn=this.document.getElementById('logoutBtn');
    logoutBtn.addEventListener('click',(event)=>{
