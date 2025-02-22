@@ -221,25 +221,23 @@ window.addEventListener('DOMContentLoaded', function (event) {
         }
     })
     const SiginInButton = this.document.getElementById('SiginInButton');
-SiginInButton.addEventListener('click', async (event) => {
-        event.preventDefault()
-        
+ SiginInButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+        try {
             var signInEmail = this.document.getElementById('signInEmail').value;
             var password = this.document.getElementById('signInPassword').value;
-           
-            const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser", {
-                method: "POST",
+            const jsonUser = {
+                "email": signInEmail,
+                "pwrd": password
+            }
+            const response = await fetch(`https://quiz-server-production-71dd.up.railway.app/apiEmail/LoginUser`, {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    'Content-Type': 'application/json'
                 },
-                body: `email=${encodeURIComponent(signInEmail)}&pwrd=${encodeURIComponent(password)}`,
+                body: JSON.stringify(jsonUser)
             });
-            console.log(response);
-            
-            
-            const data1 = await response.text();
-            console.log("Response Data:", data1);
-            alert(data1);
+
             if (response.ok) {
                 
                 const data = await response.text();
@@ -263,7 +261,10 @@ SiginInButton.addEventListener('click', async (event) => {
                 console.error('Error:', response.statusText);
                 alert("Error saving the question");
             }
-        
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Network error, try again later.");
+        }
     })
 
     const logoutBtn=this.document.getElementById('logoutBtn');
