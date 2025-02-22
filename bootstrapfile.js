@@ -199,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 "pwrd": pwrd
             }
             try {
-                const response = await fetch("https://quiz-server-production-71dd.up.railway.app/saveUser", {
+                const response = await fetch("https://quiz-server-production-71dd.up.railway.app/apiEmail/saveUser", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -208,7 +208,8 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 });
                 if (response.ok) {
                     const data = await response.text();
-                    console.log('Registration saved successfully:', data);
+                    alert('Registration saved successfully:', data);
+                    var signIntab=document.getElementById('signIn-');
                     signIntab.click();
                 } else {
                     console.error('Error:', response.statusText);
