@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
         console.log(jsonQuestion);
         try {
-            const response = await fetch(`http://localhost:9090/api/${subjectInput}_save`, {
+            const response = await fetch(`https://question-quiz-production.up.railway.app/api/${subjectInput}_save`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
