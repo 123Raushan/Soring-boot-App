@@ -135,6 +135,7 @@ window.addEventListener('DOMContentLoaded', function () {
     nextButton.addEventListener('click', () => {
         if (currentQuestionIndex < questions.length - 1) {
             currentQuestionIndex++;
+            
             displayQuestion();
         } else {
             // Quiz Completed: Save score and redirect to results page
@@ -149,6 +150,11 @@ window.addEventListener('DOMContentLoaded', function () {
             displayQuestion();
         } else {
             // Quiz Completed: Save score and redirect to results page
+            for (const key in answer) {
+               if (answer[key]=='y') {
+                correctAnswers++
+               }
+            }
             localStorage.setItem('quizScore', correctAnswers); // Save the score
             localStorage.setItem('totalQuestions', totalQuestions); // Save total questions
             window.location.href = 'result.html'; // Redirect to results page
